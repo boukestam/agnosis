@@ -2,23 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Minecraft';
+  src: local('Minecraft'), url(./fonts/Minecraft.ttf) format('truetype');
+  ascent-override: 100%;
+}
+
+* {
+  font-family: 'Minecraft', sans-serif;
+  letter-spacing: 1.25px;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: never;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+.button {
+  border: 10px solid transparent;
+  border-image: url(./button.png) 30 round;
 }
 
-input[type='text'],
-textarea {
-  width: 100%;
-  outline: none;
-  padding: 4px 8px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+.paper {
+  border: 8px solid transparent;
+  border-image: url(./paper.png) 20 round;
+}
+
+.frame {
+  border: 32px solid transparent;
+  border-image: url(./frame.png) 48 round;
+}
+
+.border-text {
+  --shadow-color: #000;
+  letter-spacing: 2px;
+  text-shadow: 3.5px 0 0 var(--shadow-color), 3.23365px 1.33945px 0 var(--shadow-color),
+    2.47485px 2.47485px 0 var(--shadow-color), 1.33945px 3.23365px 0 var(--shadow-color),
+    0 3.5px 0 var(--shadow-color), -1.33945px 3.23365px 0 var(--shadow-color),
+    -2.47485px 2.47485px 0 var(--shadow-color), -3.23365px 1.33945px 0 var(--shadow-color),
+    -3.5px 0 0 var(--shadow-color), -3.23365px -1.33945px 0 var(--shadow-color),
+    -2.47485px -2.47485px 0 var(--shadow-color), -1.33945px -3.23365px 0 var(--shadow-color),
+    0 -3.5px 0 var(--shadow-color), 1.33945px -3.23365px 0 var(--shadow-color),
+    2.47485px -2.47485px 0 var(--shadow-color), 3.23365px -1.33945px 0 var(--shadow-color);
 }

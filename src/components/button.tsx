@@ -5,7 +5,7 @@ import clsx from 'clsx';
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
-  type?: 'primary' | 'secondary';
+  type?: 'primary';
   className?: string;
   disabled?: boolean;
 }
@@ -13,19 +13,11 @@ interface ButtonProps {
 function Button({ children, onClick, type = 'primary', className, disabled }: ButtonProps) {
   return (
     <button
-      className={clsx(
-        'px-4 py-1 rounded text-sm',
-        !disabled && 'hover:shadow-md',
-        type === 'primary' && 'text-white bg-blue-500 hover:bg-blue-600',
-        type === 'secondary' && 'text-black border border-gray-300',
-        type === 'secondary' && !disabled && 'bg-white hover:bg-gray-100',
-        type === 'secondary' && disabled && 'bg-gray-100',
-        className,
-      )}
+      className={clsx('text-sm', type === 'primary' && 'text-white button', className)}
       onClick={onClick}
       disabled={disabled}
     >
-      {children}
+      <div className="flex items-center justify-center h-full px-2 bg-ui-fill">{children}</div>
     </button>
   );
 }

@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
+import { BigNumber } from 'ethers';
+
 export interface ImportedContract {
   name: string;
   address: string;
@@ -18,6 +20,9 @@ interface Store {
   notifications: string[];
   addNotification: (notification: string) => void;
   removeNotification: (notification: string) => void;
+
+  balance: BigNumber | null;
+  setBalance: (balance: BigNumber | null) => void;
 }
 
 export const StoreContext = createContext<Store>({} as Store);
@@ -26,6 +31,7 @@ function StoreProvider({ children }: { children: React.ReactNode }) {
   const [contracts, setContracts] = useState<ImportedContract[]>([]);
   const [selectedContract, setSelectedContract] = useState<ImportedContract | null>(null);
   const [notifications, setNotifications] = useState<string[]>([]);
+  const [balance, setBalance] = useState<BigNumber | null>(null);
 
   useEffect(() => {
     const storedContracts = localStorage.getItem('contracts');
@@ -77,6 +83,9 @@ function StoreProvider({ children }: { children: React.ReactNode }) {
     notifications,
     addNotification,
     removeNotification,
+
+    balance,
+    setBalance,
   };
 
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>;
