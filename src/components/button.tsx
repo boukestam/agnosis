@@ -13,7 +13,7 @@ interface ButtonProps {
 function Button({ children, onClick, type = 'primary', className, disabled }: ButtonProps) {
   return (
     <button
-      className={clsx('text-sm', type === 'primary' && 'text-white button', className)}
+      className={clsx('text-sm', type === 'primary' && 'text-white button pixel', className)}
       onClick={onClick}
       disabled={disabled}
     >

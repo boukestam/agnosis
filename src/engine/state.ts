@@ -4,14 +4,14 @@ import { Movement } from './movement';
 import { Position } from './position';
 
 const idleAnimation: [number, number][] = [
-  [16, 32],
-  [16, 48],
+  [0, 32],
+  [48, 32],
 ];
 const idleAnimationDuration = 500;
 
 const walkAnimation: [number, number][] = [
+  [16, 32],
   [32, 32],
-  [48, 32],
 ];
 const walkAnimationDuration = 100;
 
@@ -20,6 +20,7 @@ export function indexToXY(i: number, width: number): [number, number] {
 }
 
 export class GameState {
+  originalLevel: Level;
   level: Level;
 
   animation: Animation;
@@ -27,7 +28,10 @@ export class GameState {
   blockMovements: Movement[];
   steps: number[];
 
+  controlDown: boolean = false;
+
   constructor(level: Level, steps?: number[]) {
+    this.originalLevel = level;
     this.level = JSON.parse(JSON.stringify(level));
 
     this.animation = new RandomAnimation(idleAnimation, idleAnimationDuration);

@@ -1,7 +1,7 @@
 {
-  "name": "evm-tools",
+  "name": "agnosis",
   "version": "0.1.0",
-  "homepage": "https://technistuff.com/evm-tools",
+  "homepage": "https://app.agnosis.io",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -11,6 +11,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@types/react-mailchimp-subscribe": "^2.1.1",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
     "@web3-react/core": "8.0.33-beta.0",
@@ -29,6 +30,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
+    "react-mailchimp-subscribe": "^2.1.3",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "tailwindcss-group-variants": "^0.0.9",
     "typescript": "^4.4.2",

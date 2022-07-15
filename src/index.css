@@ -9,6 +9,12 @@
 }
 
 * {
+  font-family: system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+}
+
+.pixel,
+.pixel * {
   font-family: 'Minecraft', sans-serif;
   letter-spacing: 1.25px;
 }
@@ -19,23 +25,33 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+img:not(.alias) {
+  image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: -moz-crisp-edges; /* Firefox                        */
+  image-rendering: -o-crisp-edges; /* Opera                          */
+  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+  image-rendering: pixelated; /* Chrome */
+  image-rendering: optimize-contrast; /* CSS3 Proposed                  */
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+                           */
+}
+
 .button {
   border: 10px solid transparent;
-  border-image: url(./button.png) 30 round;
+  border-image: url(./assets/button.png) 30 round;
 }
 
 .paper {
   border: 8px solid transparent;
-  border-image: url(./paper.png) 20 round;
+  border-image: url(./assets/paper.png) 20 round;
 }
 
 .frame {
   border: 32px solid transparent;
-  border-image: url(./frame.png) 48 round;
+  border-image: url(./assets/frame.png) 48 round;
 }
 
 .border-text {
-  --shadow-color: #000;
+  --shadow-color: rgba(0, 0, 0, 0.5);
   letter-spacing: 2px;
   text-shadow: 3.5px 0 0 var(--shadow-color), 3.23365px 1.33945px 0 var(--shadow-color),
     2.47485px 2.47485px 0 var(--shadow-color), 1.33945px 3.23365px 0 var(--shadow-color),
@@ -45,4 +61,22 @@ body {
     -2.47485px -2.47485px 0 var(--shadow-color), -1.33945px -3.23365px 0 var(--shadow-color),
     0 -3.5px 0 var(--shadow-color), 1.33945px -3.23365px 0 var(--shadow-color),
     2.47485px -2.47485px 0 var(--shadow-color), 3.23365px -1.33945px 0 var(--shadow-color);
+}
+
+.hover-bold {
+  text-align: center;
+}
+
+.hover-bold:hover {
+  font-weight: bold;
+}
+
+.hover-bold::after {
+  display: block;
+  content: attr(title);
+  font-weight: bold;
+  height: 0;
+  color: transparent;
+  overflow: hidden;
+  visibility: hidden;
 }

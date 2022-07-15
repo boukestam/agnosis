@@ -23,6 +23,9 @@ interface Store {
 
   balance: BigNumber | null;
   setBalance: (balance: BigNumber | null) => void;
+
+  music: boolean;
+  setMusic: (music: boolean) => void;
 }
 
 export const StoreContext = createContext<Store>({} as Store);
@@ -32,6 +35,7 @@ function StoreProvider({ children }: { children: React.ReactNode }) {
   const [selectedContract, setSelectedContract] = useState<ImportedContract | null>(null);
   const [notifications, setNotifications] = useState<string[]>([]);
   const [balance, setBalance] = useState<BigNumber | null>(null);
+  const [music, setMusic] = useState<boolean>(false);
 
   useEffect(() => {
     const storedContracts = localStorage.getItem('contracts');
@@ -86,6 +90,9 @@ function StoreProvider({ children }: { children: React.ReactNode }) {
 
     balance,
     setBalance,
+
+    music,
+    setMusic,
   };
 
   return <StoreContext.Provider value={store}>{children}</StoreContext.Provider>;

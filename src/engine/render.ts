@@ -1,4 +1,5 @@
 import { Level } from '../constants/levels';
+import { swapColors } from '../utils/color';
 import { Position } from './position';
 import { GameState, indexToXY } from './state';
 
@@ -92,7 +93,7 @@ export function render(
   }
 
   for (const target of level.targets) {
-    ctx.drawImage(sprites, 0, 32, 16, 16, ...getTileRect(target));
+    ctx.drawImage(sprites, 32, 16 * 5, 16, 16, ...getTileRect(target));
   }
 
   for (let i = 0; i < level.blocks.length; i++) {
@@ -102,7 +103,7 @@ export function render(
     ctx.drawImage(
       sprites,
       isValid ? 16 : 0,
-      16,
+      16 * 5,
       16,
       16,
       Math.round(movement.position.x * tileSize),
@@ -112,8 +113,17 @@ export function render(
     );
   }
 
-  const lastStep = state.steps[state.steps.length - 1];
+  let lastStep = 0;
+  for (let i = state.steps.length - 1; i >= 0; i--) {
+    const step = state.steps[i];
+    if (step === 2 || step === 4) {
+      lastStep = step;
+      break;
+    }
+  }
   const flip = lastStep === 4 ? -1 : 1;
+
+  const owlImage = swapColors(sprites, 8, ...state.animation.getCurrentFrame(deltaTime));
 
   ctx.save();
   ctx.translate(
@@ -122,15 +132,18 @@ export function render(
   );
   ctx.scale(flip, 1);
 
+  const tileFactor = tileSize / 16;
+
   ctx.drawImage(
-    sprites,
-    ...state.animation.getCurrentFrame(deltaTime),
-    16,
-    16,
+    owlImage,
     0,
     0,
-    flip * tileSize,
-    tileSize,
+    owlImage.width,
+    owlImage.height,
+    -flip * 4 * tileFactor,
+    -5 * tileFactor,
+    flip * (owlImage.width * tileFactor),
+    owlImage.height * tileFactor,
   );
 
   ctx.restore();

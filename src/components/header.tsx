@@ -13,7 +13,7 @@ function Header() {
   const isActivating = useIsActivating();
   const isActive = useIsActive();
 
-  const { balance } = useStore();
+  const { balance, music, setMusic } = useStore();
 
   useEffect(() => {
     metaMask.connectEagerly().catch(() => {
@@ -22,9 +22,9 @@ function Header() {
   }, []);
 
   return (
-    <div className="flex items-center justify-end p-2">
-      <div className="flex items-center px-4 text-2xl font-bold text-white border-text">
-        <img src={process.env.PUBLIC_URL + '/logo192.png'} alt="logo" className="h-12 mr-4" />
+    <div className="flex items-center justify-end px-4 py-2">
+      <div className="flex items-center text-xl font-bold">
+        <img src={process.env.PUBLIC_URL + '/logo192.png'} alt="logo" className="h-12 mr-1" />
         Agnosis
       </div>
 
@@ -32,15 +32,20 @@ function Header() {
 
       {isActive && accounts && chainId ? (
         <div className="flex">
+          <Button className="mr-4" onClick={() => setMusic(!music)}>
+            Toggle music
+          </Button>
+
           <Button className="mr-4">
             <div className="flex items-center">
               <img src={process.env.PUBLIC_URL + '/coin.png'} className="w-6 h-6" />
               <div className="ml-2">{balance ? ethers.utils.formatEther(balance) : '...'}</div>
             </div>
           </Button>
-          <Button>{'Polygon'}</Button>
 
-          <Button className="ml-4">{formatAddress(accounts[0])}</Button>
+          <Button className="mr-4">{'Polygon'}</Button>
+
+          <Button>{formatAddress(accounts[0])}</Button>
         </div>
       ) : isActivating ? (
         'Connecting...'
