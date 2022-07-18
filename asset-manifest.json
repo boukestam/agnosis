@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cf99724b.css",
+    "main.js": "/static/js/main.279db5af.js",
+    "static/media/Minecraft.ttf": "/static/media/Minecraft.81f6c7f882fcc2dee106.ttf",
+    "index.html": "/index.html",
+    "main.cf99724b.css.map": "/static/css/main.cf99724b.css.map",
+    "main.279db5af.js.map": "/static/js/main.279db5af.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cf99724b.css",
+    "static/js/main.279db5af.js"
+  ]
+}
