@@ -51,7 +51,7 @@ img:not(.alias) {
 }
 
 .border-text {
-  --shadow-color: rgba(0, 0, 0, 0.5);
+  --shadow-color: rgba(0, 0, 0, 1);
   letter-spacing: 2px;
   text-shadow: 3.5px 0 0 var(--shadow-color), 3.23365px 1.33945px 0 var(--shadow-color),
     2.47485px 2.47485px 0 var(--shadow-color), 1.33945px 3.23365px 0 var(--shadow-color),

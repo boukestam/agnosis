@@ -128,7 +128,7 @@ function Home({ onLaunch }: { onLaunch: () => void }) {
         </Section>
 
         <Section title="Token" image="/coin.png">
-          Earn $AGNOS by playing the game, creating cool levels and trading. Use your $AGNOS to
+          Earn $AGN by playing the game, creating cool levels and trading. Use your $AGN to
           participate in competitions and vote on community levels.
         </Section>
 
