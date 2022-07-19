@@ -6,7 +6,7 @@ module.exports = {
       colors: {
         grass: '#C7EF77',
         sky: {
-          light: '#C4F2FF',
+          light: '#D8F7FF',
           dark: '#4FABFF',
         },
         box: {

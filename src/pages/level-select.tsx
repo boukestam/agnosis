@@ -7,7 +7,7 @@ import { BigNumber, ethers } from 'ethers';
 import { getAgnosisContract } from '../blockchain/contracts';
 import Button from '../components/button';
 import { useAccount, useProvider } from '../connectors';
-import { Level, levels } from '../constants/levels';
+import { Level, levels } from '../levels/levels';
 
 function hashLevel(level: Level) {
   const inputs = [

@@ -3,9 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 
 import { BigNumber } from 'ethers';
 
+import { chains } from '../blockchain/chains';
 import { getERC20Contract } from '../blockchain/contracts';
 import Header from '../components/header';
-import { useAccount, useProvider } from '../connectors';
+import { useAccount, useChainId, useProvider } from '../connectors';
 import { useStore } from '../store';
 import LevelPlay from './level-play';
 import LevelSelect from './level-select';
@@ -13,6 +14,7 @@ import LevelSelect from './level-select';
 function Game() {
   const provider = useProvider();
   const account = useAccount();
+  const chainId = useChainId();
 
   const { balance, setBalance, music } = useStore();
 
@@ -87,10 +89,27 @@ function Game() {
         <Header />
 
         <div className="flex flex-col items-center justify-center flex-1">
-          <Routes>
-            <Route index element={<LevelSelect />} />
-            <Route path="/:levelNumber" element={<LevelPlay />} />
-          </Routes>
+          {account && chainId && chainId in chains ? (
+            <Routes>
+              <Route index element={<LevelSelect />} />
+              <Route path="/:levelNumber" element={<LevelPlay />} />
+            </Routes>
+          ) : (
+            <div className="max-w-lg">
+              <div className="frame">
+                <div className="p-4 bg-ui-frame">
+                  <div className="flex justify-center">
+                    <img src={process.env.PUBLIC_URL + '/metamask.svg'} className="w-40" />
+                  </div>
+                  <div className="text-center text-white border-text">
+                    {chainId && !(chainId in chains)
+                      ? "Please switch MetaMask to the 'Mumbai' network to play the game."
+                      : "Connect your MetaMask wallet by clicking the 'connect' button in the top right."}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

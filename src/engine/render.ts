@@ -1,4 +1,4 @@
-import { Level } from '../constants/levels';
+import { Level } from '../levels/levels';
 import { swapColors } from '../utils/color';
 import { IdleAnimation, WalkAnimation } from './animation';
 import { MovementAction } from './movement';

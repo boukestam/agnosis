@@ -1,5 +1,5 @@
 import { GameSounds } from '../components/sokoban';
-import { Level } from '../constants/levels';
+import { Level } from '../levels/levels';
 import { GameState } from './state';
 
 function advance(level: Level, step: number): { success: boolean; blockPushed: boolean } {
@@ -63,6 +63,8 @@ export function handleInput(e: KeyboardEvent, state: GameState, sounds: GameSoun
   } else if (e.key === 'z' && state.controlDown) {
     return undo(state);
   } else return state;
+
+  if (e.repeat) return state;
 
   const result = advance(state.level, step);
   if (!result.success) return before;

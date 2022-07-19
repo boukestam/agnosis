@@ -3,18 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { ethers } from 'ethers';
 
+import { chains } from '../blockchain/chains';
 import { metaMask, useAccounts, useChainId, useIsActivating, useIsActive } from '../connectors';
 import { useStore } from '../store';
 import { formatAddress } from '../utils/formatAddress';
 import Button from './button';
 import { Tag } from './tag';
-
-const networkNames: { [key: number]: string } = {
-  1: 'Mainnet',
-  4: 'Rinkeby',
-  137: 'Polygon',
-  80001: 'Mumbai',
-};
 
 function Header() {
   const chainId = useChainId();
@@ -55,7 +49,7 @@ function Header() {
             </div>
           </Button>
 
-          <Button className="mr-4">{networkNames[chainId] || 'Wrong network'}</Button>
+          <Button className="mr-4">{chains[chainId] || 'Wrong network'}</Button>
 
           <Button>{formatAddress(accounts[0])}</Button>
         </div>

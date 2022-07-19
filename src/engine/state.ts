@@ -1,4 +1,4 @@
-import { Level } from '../constants/levels';
+import { Level } from '../levels/levels';
 import { Animation, IdleAnimation } from './animation';
 import { Movement } from './movement';
 import { Position } from './position';

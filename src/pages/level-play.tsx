@@ -10,8 +10,8 @@ import { Loader } from '../components/loader';
 import { Modal } from '../components/modal';
 import { Sokoban } from '../components/sokoban';
 import { useAccount, useProvider } from '../connectors';
-import { levels } from '../constants/levels';
 import { GameState } from '../engine/state';
+import { levels } from '../levels/levels';
 import { useStore } from '../store';
 
 function getLevel(levelNumber: string | undefined) {
