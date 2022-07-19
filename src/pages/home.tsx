@@ -1,9 +1,11 @@
 import React, { ReactNode, useState } from 'react';
 import MailchimpSubscribe from 'react-mailchimp-subscribe';
+import { useNavigate } from 'react-router-dom';
 
 import clsx from 'clsx';
 
 import Button from '../components/button';
+import { Tag } from '../components/tag';
 
 function Section({
   title,
@@ -19,11 +21,11 @@ function Section({
   return (
     <div
       className={clsx(
-        'flex justify-center w-full px-10 py-20 even:bg-gray-50 group even:text-right',
+        'flex justify-center w-full px-10 py-20 even:bg-gray-50 group sm:even:text-right',
         className,
       )}
     >
-      <div className="flex items-center w-full max-w-3xl group-odd:flex-row-reverse">
+      <div className="flex flex-col items-center w-full max-w-3xl sm:group-odd:flex-row-reverse sm:flex-row">
         {image && (
           <>
             {typeof image === 'string' ? (
@@ -34,7 +36,7 @@ function Section({
             <div className="flex-1 min-w-[40px]"></div>
           </>
         )}
-        <div className={image ? 'max-w-md' : ''}>
+        <div className={image ? 'max-w-md mt-8 sm:mt-0' : ''}>
           <div className="mb-4 text-5xl font-medium">{title}</div>
           <div className="text-lg">{children}</div>
         </div>
@@ -44,33 +46,42 @@ function Section({
 }
 
 function MenuItem({ children, url }: { children: ReactNode; url: string }) {
+  const navigate = useNavigate();
+
   return (
-    <div className="mx-4 cursor-pointer hover-bold" title={children?.toString()}>
+    <div
+      className="items-center hidden mx-4 cursor-pointer sm:flex hover-bold"
+      onClick={() => navigate(url)}
+    >
       {children}
     </div>
   );
 }
 
 function Home({ onLaunch }: { onLaunch: () => void }) {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState<string>('');
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex items-center w-full px-4 py-2 shadow bg-sky-light">
-        <img src={process.env.PUBLIC_URL + '/logo.png'} alt="logo" className="h-12 mr-1" />
-        <div className="text-xl pixel">Agnosis</div>
+      <div className="flex items-center w-full px-4 py-2 bg-white">
+        <div onClick={() => navigate('/')} className="flex items-center cursor-pointer">
+          <img src={process.env.PUBLIC_URL + '/logo.png'} alt="logo" className="h-12 mr-1" />
+          <div className="flex items-center text-xl text-white pixel border-text">Agnosis</div>
+        </div>
 
         <div className="flex-1"></div>
 
-        <MenuItem url="marketplace">Marketplace</MenuItem>
-        <MenuItem url="builder">Builder</MenuItem>
-        <MenuItem url="community">Community</MenuItem>
-        <MenuItem url="docs">Docs</MenuItem>
-        <MenuItem url="blog">Blog</MenuItem>
+        <MenuItem url="">
+          Marketplace <Tag className="ml-2">Coming soon</Tag>
+        </MenuItem>
 
         <div className="flex-1"></div>
 
-        <Button onClick={onLaunch}>Launch app</Button>
+        <Button onClick={onLaunch} className="hidden sm:flex">
+          Launch app
+        </Button>
       </div>
 
       <div className="w-full">
@@ -79,7 +90,7 @@ function Home({ onLaunch }: { onLaunch: () => void }) {
             The first zero knowledge puzzle gaming company. Play competitive games without showing
             your hand.
           </div>
-          <div className="mt-8">
+          <div className="hidden mt-8 sm:flex">
             <Button onClick={onLaunch}>Get started</Button>
           </div>
         </Section>
@@ -123,22 +134,22 @@ function Home({ onLaunch }: { onLaunch: () => void }) {
 
         <div className="flex justify-center w-full px-10 py-20 bg-gray-200">
           <div className="flex flex-col items-center w-full max-w-3xl">
-            <div className="mb-8 text-5xl">Powered by</div>
-            <div className="flex flex-wrap items-center">
+            <div className="mb-12 text-5xl sm:mb-8">Powered by</div>
+            <div className="flex flex-wrap items-center justify-center">
               <img
                 src={process.env.PUBLIC_URL + '/polygon-logo.svg'}
                 alt="polygon"
-                className="h-10 mr-10 alias"
+                className="h-10 mb-4 mr-10 alias"
               />
               <img
                 src={process.env.PUBLIC_URL + '/circom-logo.png'}
                 alt="circom"
-                className="h-16 mr-10 alias"
+                className="h-16 mb-4 mr-10 alias"
               />
               <img
                 src={process.env.PUBLIC_URL + '/zkrepl-logo.png'}
                 alt="zkrepl"
-                className="h-16 alias"
+                className="h-16 mb-4 alias"
               />
             </div>
           </div>
@@ -175,7 +186,7 @@ function Home({ onLaunch }: { onLaunch: () => void }) {
           />
         </Section>
 
-        <div className="flex justify-center w-full px-10 py-4">
+        <div className="flex justify-center w-full px-4 py-4 sm:px-10">
           <div className="flex items-center w-full max-w-3xl text-gray-600">
             <div>© 2022 Agnosis</div>
             <div className="flex-1"></div>
@@ -186,8 +197,10 @@ function Home({ onLaunch }: { onLaunch: () => void }) {
               />
               Follow us on Twitter
             </a>
-            <div className="flex-1"></div>
-            <a href="mailto: info@agnosis.io">info@agnosis.io</a>
+            <div className="flex-1 hidden sm:block"></div>
+            <a className="hidden sm:block" href="mailto: info@agnosis.io">
+              info@agnosis.io
+            </a>
           </div>
         </div>
       </div>

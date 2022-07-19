@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { ethers } from 'ethers';
 
@@ -6,12 +7,22 @@ import { metaMask, useAccounts, useChainId, useIsActivating, useIsActive } from 
 import { useStore } from '../store';
 import { formatAddress } from '../utils/formatAddress';
 import Button from './button';
+import { Tag } from './tag';
+
+const networkNames: { [key: number]: string } = {
+  1: 'Mainnet',
+  4: 'Rinkeby',
+  137: 'Polygon',
+  80001: 'Mumbai',
+};
 
 function Header() {
   const chainId = useChainId();
   const accounts = useAccounts();
   const isActivating = useIsActivating();
   const isActive = useIsActive();
+
+  const navigate = useNavigate();
 
   const { balance, music, setMusic } = useStore();
 
@@ -23,9 +34,10 @@ function Header() {
 
   return (
     <div className="flex items-center justify-end px-4 py-2">
-      <div className="flex items-center text-xl font-bold">
+      <div className="flex items-center font-bold cursor-pointer" onClick={() => navigate('/')}>
         <img src={process.env.PUBLIC_URL + '/logo192.png'} alt="logo" className="h-12 mr-1" />
-        Agnosis
+        <span className="text-xl text-white border-text">Agnosis</span>
+        <Tag className="ml-2">Alpha</Tag>
       </div>
 
       <div className="flex-1"></div>
@@ -43,7 +55,7 @@ function Header() {
             </div>
           </Button>
 
-          <Button className="mr-4">{'Polygon'}</Button>
+          <Button className="mr-4">{networkNames[chainId] || 'Wrong network'}</Button>
 
           <Button>{formatAddress(accounts[0])}</Button>
         </div>

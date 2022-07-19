@@ -1,11 +1,5 @@
 export async function calculateProof(input: {
-  player: string;
-  steps: string[];
-  walls: string[];
-  blocks: string[];
-  targets: string[];
-  width: string;
-  height: string;
+  [key: string]: any;
 }): Promise<[[string, string], [[string, string], [string, string]], [string, string], string[]]> {
   console.log('Creating proof...');
 

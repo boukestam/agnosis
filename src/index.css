@@ -63,6 +63,12 @@ img:not(.alias) {
     2.47485px -2.47485px 0 var(--shadow-color), 3.23365px -1.33945px 0 var(--shadow-color);
 }
 
+.border-text-light {
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px var(--shadow-color);
+}
+
 .hover-bold {
   text-align: center;
 }

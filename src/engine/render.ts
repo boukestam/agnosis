@@ -1,5 +1,7 @@
 import { Level } from '../constants/levels';
 import { swapColors } from '../utils/color';
+import { IdleAnimation, WalkAnimation } from './animation';
+import { MovementAction } from './movement';
 import { Position } from './position';
 import { GameState, indexToXY } from './state';
 
@@ -53,7 +55,13 @@ export function render(
 
   // Movement animation
   state.playerMovement.setTargetPosition(new Position(...indexToXY(level.player, level.width)));
-  state.playerMovement.update(deltaTime);
+  const playerMovementAction = state.playerMovement.update(deltaTime);
+
+  if (playerMovementAction === MovementAction.STARTED) {
+    state.animation = WalkAnimation();
+  } else if (playerMovementAction === MovementAction.STOPPED) {
+    state.animation = IdleAnimation();
+  }
 
   for (let i = 0; i < level.blocks.length; i++) {
     state.blockMovements[i].setTargetPosition(
@@ -71,7 +79,17 @@ export function render(
   }
 
   for (let x = 1; x < level.width - 1; x++) {
-    for (let y = 1; y < level.height - 1; y++) {
+    let yMin = -1;
+    let yMax = -1;
+    for (let y = 0; y < level.height; y++) {
+      const i = y * level.width + x;
+      if (level.walls.some(wall => wall === i)) {
+        if (yMin === -1) yMin = y;
+        yMax = y;
+      }
+    }
+
+    for (let y = yMin + 1; y < yMax; y++) {
       const i = y * level.width + x;
       const hashX = ((i * 37) % 11) % 2;
       const hashY = ((i * 137) % 11) % 2;

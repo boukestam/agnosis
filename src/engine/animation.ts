@@ -51,3 +51,23 @@ export class TimedAnimation extends Animation {
     return new TimedAnimation(this.frames, this.frameDuration);
   }
 }
+
+const idleAnimation: [number, number][] = [
+  [0, 32],
+  [48, 32],
+];
+const idleAnimationDuration = 500;
+
+const walkAnimation: [number, number][] = [
+  [16, 32],
+  [32, 32],
+];
+const walkAnimationDuration = 100;
+
+export function IdleAnimation() {
+  return new RandomAnimation(idleAnimation, idleAnimationDuration);
+}
+
+export function WalkAnimation() {
+  return new TimedAnimation(walkAnimation, walkAnimationDuration);
+}

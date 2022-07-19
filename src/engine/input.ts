@@ -36,6 +36,18 @@ function advance(level: Level, step: number): { success: boolean; blockPushed: b
   return { success: true, blockPushed: false };
 }
 
+export function undo(state: GameState) {
+  state.level = JSON.parse(JSON.stringify(state.originalLevel));
+
+  for (let i = 0; i < state.steps.length - 1; i++) {
+    advance(state.level, state.steps[i]);
+  }
+
+  state.steps = state.steps.slice(0, -1);
+
+  return state;
+}
+
 export function handleInput(e: KeyboardEvent, state: GameState, sounds: GameSounds): GameState {
   const before = state.clone();
 
@@ -49,15 +61,7 @@ export function handleInput(e: KeyboardEvent, state: GameState, sounds: GameSoun
     state.controlDown = true;
     return state;
   } else if (e.key === 'z' && state.controlDown) {
-    state.level = JSON.parse(JSON.stringify(state.originalLevel));
-
-    for (let i = 0; i < state.steps.length - 2; i++) {
-      advance(state.level, state.steps[i]);
-    }
-
-    step = state.steps[state.steps.length - 2];
-
-    state.steps = state.steps.slice(0, -2);
+    return undo(state);
   } else return state;
 
   const result = advance(state.level, step);

@@ -17,7 +17,9 @@ module.exports = {
           fill: '#3A4466',
           dark: '#262B45',
           border: '#181425',
-          frame: '#35232F',
+          frame: {
+            DEFAULT: '#743F39',
+          },
           paper: '#EAD4AA',
         },
       },

@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import Game from './pages/game';
 import Home from './pages/home';
 
 function App() {
-  const hostParts = window.location.host.split('.');
-  const subdomain = hostParts.length > 1 ? hostParts[0] : '';
+  const navigate = useNavigate();
 
-  return subdomain === 'app' ? (
-    <Game />
-  ) : (
-    <Home
-      onLaunch={() =>
-        (window.location.href =
-          window.location.href.split(window.location.host)[0] +
-          'app.' +
-          window.location.host +
-          window.location.href.split(window.location.host)[1])
-      }
-    />
+  return (
+    <Routes>
+      <Route index element={<Home onLaunch={() => navigate('/app')} />} />
+      <Route path="/app/*" element={<Game />} />
+    </Routes>
   );
 }
 
