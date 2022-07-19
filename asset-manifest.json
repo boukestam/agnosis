@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.ddf5ccfe.css",
-    "main.js": "/static/js/main.bb3fb280.js",
+    "main.css": "/static/css/main.18e6a150.css",
+    "main.js": "/static/js/main.02a63c89.js",
     "static/media/Minecraft.ttf": "/static/media/Minecraft.81f6c7f882fcc2dee106.ttf",
     "index.html": "/index.html",
-    "main.ddf5ccfe.css.map": "/static/css/main.ddf5ccfe.css.map",
-    "main.bb3fb280.js.map": "/static/js/main.bb3fb280.js.map"
+    "main.18e6a150.css.map": "/static/css/main.18e6a150.css.map",
+    "main.02a63c89.js.map": "/static/js/main.02a63c89.js.map"
   },
   "entrypoints": [
-    "static/css/main.ddf5ccfe.css",
-    "static/js/main.bb3fb280.js"
+    "static/css/main.18e6a150.css",
+    "static/js/main.02a63c89.js"
   ]
 }
