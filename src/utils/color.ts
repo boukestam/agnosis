@@ -29,7 +29,7 @@ export function swapColors(image: HTMLImageElement, seed: number, clipX: number,
   editCtx.drawImage(image, clipX, clipY, 16, 16, 4, 5, 16, 16);
 
   if (random() < 0.2) {
-    editCtx.drawImage(image, Math.floor(random() * 3) * 24, 0, 24, 16, 0, -2, 24, 16);
+    editCtx.drawImage(image, Math.floor(random() * 6) * 24, 0, 24, 16, 0, -2, 24, 16);
   }
 
   if (random() < 0.2) {
@@ -47,13 +47,12 @@ export function swapColors(image: HTMLImageElement, seed: number, clipX: number,
     const randomBrightness = random() * 0.95;
     const brightness = 1 - Math.pow(randomBrightness, 7);
     const saturation = 1 - random() * 0.2;
-    let replaceColors = [
+    const replaceColors = [
       hsvToRgb(hue, saturation, brightness - 0.3),
       hsvToRgb(hue, saturation - 0.3, brightness - 0.15),
       hsvToRgb(hue, saturation - 0.8, brightness),
       hsvToRgb(random() * (60 / 360), 1, 1),
     ];
-    if (random() < 0.1) replaceColors = [...replaceColors.slice(0, 3).reverse(), replaceColors[3]];
 
     const imageData = editCtx.getImageData(0, 0, editCanvas.width, editCanvas.height);
     const newImageData = editCtx.getImageData(0, 0, editCanvas.width, editCanvas.height);

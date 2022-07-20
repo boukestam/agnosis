@@ -11,6 +11,7 @@ import { Modal } from '../components/modal';
 import { Sokoban } from '../components/sokoban';
 import { useAccount, useProvider } from '../connectors';
 import { GameState } from '../engine/state';
+import { useSprites } from '../hooks/useSprites';
 import { levels } from '../levels/levels';
 import { useStore } from '../store';
 
@@ -32,19 +33,11 @@ function LevelPlay() {
   const [verifying, setVerifying] = useState<boolean>(false);
   const [verifyingStatus, setVerifyingStatus] = useState<string>('');
 
-  const [sprites, setSprites] = useState<HTMLImageElement | null>(null);
+  const sprites = useSprites();
 
   useEffect(() => {
     setState(new GameState(getLevel(levelNumber)));
   }, [levelNumber]);
-
-  useEffect(() => {
-    const spritesImage = new Image(160, 160);
-    spritesImage.onload = () => {
-      setSprites(spritesImage);
-    };
-    spritesImage.src = process.env.PUBLIC_URL + '/spritesheet.png';
-  }, []);
 
   const onGameChange = (state: GameState) => {
     if (!provider || !account) return;

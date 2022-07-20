@@ -141,7 +141,7 @@ export function render(
   }
   const flip = lastStep === 4 ? -1 : 1;
 
-  const owlImage = swapColors(sprites, 8, ...state.animation.getCurrentFrame(deltaTime));
+  const owlImage = swapColors(sprites, 73, ...state.animation.getCurrentFrame(deltaTime));
 
   ctx.save();
   ctx.translate(
