@@ -7,6 +7,44 @@ import clsx from 'clsx';
 import Button from '../components/button';
 import { Tag } from '../components/tag';
 
+const roadmapItems = [
+  {
+    date: 'Q2 2022',
+    text: 'Development of V1',
+    finished: true,
+  },
+  {
+    date: 'Q3 2022',
+    text: 'Website live',
+    finished: true,
+  },
+  {
+    date: 'Q3 2022',
+    text: 'Launch on testnet',
+    finished: true,
+  },
+  {
+    date: 'Q3 2022',
+    text: 'Competitions & NFT marketplace',
+  },
+  {
+    date: 'Q4 2022',
+    text: 'Token generation event',
+  },
+  {
+    date: 'Q4 2022',
+    text: 'Launch on mainnet',
+  },
+  {
+    date: 'Q1 2023',
+    text: 'Second game',
+  },
+  {
+    date: 'Q2 2023',
+    text: 'Ranking system',
+  },
+];
+
 function Section({
   title,
   image,
@@ -33,9 +71,11 @@ function Section({
             ) : (
               image
             )}
-            <div className="flex-1 min-w-[40px]"></div>
           </>
         )}
+
+        <div className="flex-1 min-w-[40px]"></div>
+
         <div className={image ? 'max-w-md mt-8 sm:mt-0' : ''}>
           <div className="mb-4 text-5xl font-medium">{title}</div>
           <div className="text-lg">{children}</div>
@@ -154,6 +194,40 @@ function Home({ onLaunch }: { onLaunch: () => void }) {
             </div>
           </div>
         </div>
+
+        <Section title="Roadmap" image="/rocket.png">
+          <div className="flex justify-center mt-16">
+            <div>
+              {roadmapItems.map((item, itemIndex) => (
+                <div key={itemIndex} className="flex items-start">
+                  <div className="flex flex-col items-center">
+                    <div
+                      className={clsx(
+                        'rounded-full w-4 h-4 border-2',
+                        !item.finished && 'border-gray-600',
+                        item.finished && 'bg-blue-400 border-blue-800',
+                      )}
+                    ></div>
+                    {itemIndex < roadmapItems.length - 1 && (
+                      <div
+                        className={clsx(
+                          'w-0 h-14 border my-0.5',
+                          !item.finished && 'border-gray-600',
+                          item.finished && 'border-blue-800',
+                        )}
+                      ></div>
+                    )}
+                  </div>
+
+                  <div className="ml-8 -mt-4">
+                    <div className="text-sm text-gray-600">{item.date}</div>
+                    <div>{item.text}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Section>
 
         <Section title="Stay tuned" image="/mail.png">
           <MailchimpSubscribe
