@@ -103,7 +103,7 @@ function Game() {
                   </div>
                   <div className="text-center text-white border-text">
                     {chainId && !(chainId in chains)
-                      ? "Please switch MetaMask to the 'Mumbai' network to play the game."
+                      ? "Please switch MetaMask to the 'Rinkeby' network to play the game."
                       : "Connect your MetaMask wallet by clicking the 'connect' button in the top right."}
                   </div>
                 </div>
